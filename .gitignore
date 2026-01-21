@@ -1,5 +1,12 @@
+##############################
+# Personal Files - DO NOT COMMIT
+##############################
+**/README_personal_nick.md
+README_personal_nick.md
+
+##############################
 # Xcode
-#
+##############################
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 ## User settings
@@ -165,6 +172,3 @@ Temporary Items
 # Uncomment as needed for your project
 # UserDefaults.plist
 
-
-# Personal documentation
-README_personal_nick.md

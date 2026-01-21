@@ -12,6 +12,8 @@
 		3E7E83C52F17362D00E7FCDB /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E7E83C42F17362D00E7FCDB /* WidgetKit.framework */; };
 		3E7E83C72F17362D00E7FCDB /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E7E83C62F17362D00E7FCDB /* SwiftUI.framework */; };
 		3E7E83D62F17363000E7FCDB /* SpendWiseWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3E7E83C22F17362D00E7FCDB /* SpendWiseWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3EB430C42F205C900089DD8A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3EB430B92F205C900089DD8A /* .gitignore */; };
+		3EB430C52F205C900089DD8A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3EB430B92F205C900089DD8A /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,7 @@
 		3EB3814B2F161ADF0093F349 /* spendwise_nick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spendwise_nick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EB3815A2F161AE10093F349 /* spendwise_nickTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = spendwise_nickTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EB381642F161AE10093F349 /* spendwise_nickUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = spendwise_nickUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EB430B92F205C900089DD8A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -76,7 +79,6 @@
 		3E7E83E72F17375500E7FCDB /* Exceptions for "Models" folder in "SpendWiseWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				.gitignore,
 				Category.swift,
 				SharedModelContainer.swift,
 				Transaction.swift,
@@ -230,6 +232,7 @@
 				3E7E83AC2F17263800E7FCDB /* Service */,
 				3E7E83B72F172B7500E7FCDB /* SpendWiseWidget */,
 				3E6B8DFD2F2059AB008FB172 /* README.md */,
+				3EB430B92F205C900089DD8A /* .gitignore */,
 			);
 			sourceTree = "<group>";
 		};
@@ -392,6 +395,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EB430C52F205C900089DD8A /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +404,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E6B8DFE2F2059AB008FB172 /* README.md in Resources */,
+				3EB430C42F205C900089DD8A /* .gitignore in Resources */,
 				3E0F291D2F17069E00FD4AEC /* README_personal_nick.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
