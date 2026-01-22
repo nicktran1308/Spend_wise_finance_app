@@ -79,11 +79,11 @@ struct HomeView: View {
                 
                 Text(totalBalance.asCurrency)
                     .font(.system(size: 36, weight: .bold, design: .rounded))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.primary)
             }
             
             Divider()
-                .background(Color.white.opacity(0.2))
+                .background(Color.dividerColor)
             
             // Income & Expenses Row
             HStack(spacing: 32) {
@@ -95,7 +95,7 @@ struct HomeView: View {
                     
                     Text(monthlyIncome.asCurrency)
                         .font(.headline)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.primary)
                 }
                 
                 // Expenses
@@ -106,7 +106,7 @@ struct HomeView: View {
                     
                     Text(monthlyExpenses.asCurrency)
                         .font(.headline)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.primary)
                 }
                 
                 Spacer()
@@ -115,7 +115,7 @@ struct HomeView: View {
         .padding(20)
         .background(
             LinearGradient(
-                colors: [Color(hex: "#1E3A5F"), Color(hex: "#0D1B2A")],
+                colors: [Color.balanceGradientStart, Color.balanceGradientEnd],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -123,8 +123,9 @@ struct HomeView: View {
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .overlay(
             RoundedRectangle(cornerRadius: 20)
-                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+                .stroke(Color.borderColor, lineWidth: 1)
         )
+        .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 4)
     }
     
     // MARK: - Recent Transactions Section
@@ -135,7 +136,7 @@ struct HomeView: View {
             HStack {
                 Text("Recent Transactions")
                     .font(.headline)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.primary)
                 
                 Spacer()
                 
@@ -167,7 +168,8 @@ struct HomeView: View {
                         
                         if transaction.id != recentTransactions.last?.id {
                             Divider()
-                                .background(Color.white.opacity(0.1))
+                                .background(Color.dividerColor)
+                                .padding(.leading, 74)
                         }
                     }
                 }

@@ -47,15 +47,68 @@ extension Color {
 // MARK: - App Color Palette
 
 extension Color {
-    /// App-specific colors
-    static let appBackground = Color(hex: "#000000")
-    static let cardBackground = Color(hex: "#1C1C1E")
-    static let secondaryBackground = Color(hex: "#2C2C2E")
+    /// App-specific adaptive colors that work in both light and dark modes
     
+    // MARK: - Backgrounds
+    static let appBackground = Color(UIColor.systemBackground)
+    
+    static var cardBackground: Color {
+        Color(UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor(red: 28/255, green: 28/255, blue: 30/255, alpha: 1.0) // #1C1C1E
+                : UIColor.secondarySystemGroupedBackground
+        })
+    }
+    
+    static var secondaryBackground: Color {
+        Color(UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor(red: 44/255, green: 44/255, blue: 46/255, alpha: 1.0) // #2C2C2E
+                : UIColor.tertiarySystemGroupedBackground
+        })
+    }
+    
+    // MARK: - Brand Colors
     static let incomeGreen = Color(hex: "#34C759")
     static let expenseRed = Color(hex: "#FF6B6B")
     static let accentBlue = Color(hex: "#007AFF")
     
-    static let textPrimary = Color.white
-    static let textSecondary = Color(hex: "#8E8E93")
+    // MARK: - Text Colors
+    static var textPrimary: Color {
+        Color(UIColor.label)
+    }
+    
+    static var textSecondary: Color {
+        Color(UIColor.secondaryLabel)
+    }
+    
+    // MARK: - Balance Card Gradient
+    static var balanceGradientStart: Color {
+        Color(UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor(red: 30/255, green: 58/255, blue: 95/255, alpha: 1.0) // #1E3A5F
+                : UIColor(red: 90/255, green: 150/255, blue: 220/255, alpha: 1.0) // Lighter blue
+        })
+    }
+    
+    static var balanceGradientEnd: Color {
+        Color(UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor(red: 13/255, green: 27/255, blue: 42/255, alpha: 1.0) // #0D1B2A
+                : UIColor(red: 50/255, green: 100/255, blue: 180/255, alpha: 1.0) // Deeper blue
+        })
+    }
+    
+    // MARK: - Dividers & Borders
+    static var dividerColor: Color {
+        Color(UIColor.separator)
+    }
+    
+    static var borderColor: Color {
+        Color(UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor.white.withAlphaComponent(0.1)
+                : UIColor.black.withAlphaComponent(0.1)
+        })
+    }
 }

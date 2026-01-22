@@ -14,7 +14,7 @@ struct TransactionRow: View {
                 Text(transaction.title)
                     .font(.subheadline)
                     .fontWeight(.medium)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.primary)
                 
                 HStack(spacing: 4) {
                     Text(transaction.category?.name ?? "Uncategorized")
@@ -31,7 +31,7 @@ struct TransactionRow: View {
             Text(transaction.formattedAmount)
                 .font(.subheadline)
                 .fontWeight(.semibold)
-                .foregroundStyle(transaction.isIncome ?  Color.incomeGreen : .white)
+                .foregroundStyle(transaction.isIncome ? Color.incomeGreen : .primary)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 14)

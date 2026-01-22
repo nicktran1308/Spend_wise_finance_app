@@ -69,7 +69,7 @@ struct AddTransactionView: View {
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.5)
             }
-            .foregroundStyle(isIncome ? Color.incomeGreen : .white)
+            .foregroundStyle(isIncome ? Color.incomeGreen : .primary)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 32)
@@ -149,15 +149,15 @@ struct AddTransactionView: View {
                 Text(category.name)
                     .font(.caption2)
                     .lineLimit(1)
-                    .foregroundStyle(isSelected ? .white : .secondary)
+                    .foregroundStyle(isSelected ? category.color : .secondary)
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 12)
-            .background(isSelected ? category.color.opacity(0.2) : Color.cardBackground)
+            .background(isSelected ? category.color.opacity(0.1) : Color.cardBackground)
             .clipShape(RoundedRectangle(cornerRadius: 12))
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(isSelected ? category.color : .clear, lineWidth: 2)
+                    .stroke(isSelected ? category.color : Color.borderColor, lineWidth: isSelected ? 2 : 1)
             )
         }
         .buttonStyle(.plain)

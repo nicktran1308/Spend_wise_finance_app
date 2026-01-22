@@ -48,7 +48,7 @@ struct BudgetCategoryCard: View {
                         Text(category.name)
                             .font(.subheadline)
                             .fontWeight(.medium)
-                            .foregroundStyle(.white)
+                            .foregroundStyle(.primary)
                         
                         if category.budget > 0 {
                             Text("\(remainingAmount.asCurrency) left")
@@ -68,7 +68,7 @@ struct BudgetCategoryCard: View {
                         Text(spent.asCurrency)
                             .font(.subheadline)
                             .fontWeight(.semibold)
-                            .foregroundStyle(.white)
+                            .foregroundStyle(.primary)
                         
                         if category.budget > 0 {
                             Text("of \(category.budget.asCurrency)")
