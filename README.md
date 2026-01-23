@@ -68,7 +68,7 @@ SpendWiseWidget/                      # Widget extension target
 └── Assets.xcassets/                  # Widget-specific assets
 ```
 
-## Improvement Ideas
+## Improvement Ideas 
 
 - Automated import (Plaid or CSV) to reduce manual entry
 - Recurring transactions + subscription detection
