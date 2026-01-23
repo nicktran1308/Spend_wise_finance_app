@@ -1,5 +1,5 @@
 //
-//  BudgetCategoryCard.swift.swift
+//  BudgetCategoryCard.swift
 //  spendwise_nick
 //
 //  Created by Nick on 1/13/26.

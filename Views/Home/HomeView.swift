@@ -182,21 +182,11 @@ struct HomeView: View {
     // MARK: - Empty State
     
     private var emptyState: some View {
-        VStack(spacing: 12) {
-            Image(systemName: "tray")
-                .font(.system(size: 40))
-                .foregroundStyle(.secondary)
-            
-            Text("No transactions yet")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-            
-            Text("Tap the + tab to add your first transaction")
-                .font(.caption)
-                .foregroundStyle(.tertiary)
-                .multilineTextAlignment(.center)
-        }
-        .frame(maxWidth: .infinity)
+        EmptyStateView(
+            icon: "tray",
+            title: "No transactions yet",
+            message: "Tap the + tab to add your first transaction"
+        )
         .padding(40)
         .background(Color.cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: 16))

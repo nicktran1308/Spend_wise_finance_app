@@ -8,11 +8,12 @@ struct BudgetView: View {
     private var expenseCategories: [Category]
     @Query private var transactions: [Transaction]
     
-    // Mark: - State
+    // MARK: - State
     
     @State private var selectedMonth = Date()
     @State private var editingCategory: Category?
     @State private var newBudgetAmount = ""
+    @State private var showingAddCategory = false
     
     // MARK: - Computed Properties
     
@@ -64,6 +65,10 @@ struct BudgetView: View {
             .reduce(0) { $0 + $1.amount }
     }
     
+    private var sortedExpenseCategories: [Category] {
+        expenseCategories.sorted { $0.budget > $1.budget }
+    }
+    
     /// Budget progress for a category in selected month
     private func progressInMonth(for category: Category) -> Double {
         guard category.budget > 0 else { return 0 }
@@ -87,6 +92,17 @@ struct BudgetView: View {
             }
             .background(Color.appBackground)
             .navigationTitle("Budgets")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        showingAddCategory = true
+                    } label: {
+                        Image(systemName: "plus.circle.fill")
+                            .foregroundStyle(Color.accentBlue)
+                    }
+                    .accessibilityLabel("Add Category")
+                }
+            }
             .sheet(item: $editingCategory) { category in
                 EditBudgetSheet(
                     category: category,
@@ -94,6 +110,9 @@ struct BudgetView: View {
                     onSave: { saveBudget(for: category) }
                 )
                 .presentationDetents([.height(250)])
+            }
+            .sheet(isPresented: $showingAddCategory) {
+                AddCategorySheet()
             }
         }
     }
@@ -187,18 +206,51 @@ struct BudgetView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
             
-            ForEach(expenseCategories) { category in
-                BudgetCategoryCard(
-                    category: category,
-                    spent: spentInMonth(for: category),
-                    progress: progressInMonth(for: category),
-                    onTap: {
-                        newBudgetAmount = category.budget > 0 ? String(format: "%.0f", category.budget) : ""
-                        editingCategory = category
-                    }
+            if expenseCategories.isEmpty {
+                EmptyStateView(
+                    icon: "tray",
+                    title: "No categories yet",
+                    message: "Add your first category to start budgeting.",
+                    buttonTitle: "Add Category",
+                    buttonAction: { showingAddCategory = true }
                 )
+                .padding(.vertical, 20)
+                .background(Color.cardBackground)
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+            } else {
+                ForEach(sortedExpenseCategories) { category in
+                    BudgetCategoryCard(
+                        category: category,
+                        spent: spentInMonth(for: category),
+                        progress: progressInMonth(for: category),
+                        onTap: {
+                            newBudgetAmount = category.budget > 0 ? String(format: "%.0f", category.budget) : ""
+                            editingCategory = category
+                        }
+                    )
+                }
+                
+                addCategoryButton
             }
         }
+    }
+    
+    private var addCategoryButton: some View {
+        Button {
+            showingAddCategory = true
+        } label: {
+            HStack(spacing: 8) {
+                Image(systemName: "plus.circle.fill")
+                Text("Add Category")
+            }
+            .font(.subheadline)
+            .foregroundStyle(Color.accentBlue)
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 12)
+            .background(Color.cardBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+        }
+        .buttonStyle(.plain)
     }
     
     // MARK: - Helper Methods

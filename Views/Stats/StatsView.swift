@@ -20,15 +20,37 @@ struct StatsView: View {
     
     // MARK: - Date Ranges
     
+    private enum PeriodConfig {
+        static let weekDays = 7
+        static let monthDays = 30
+        static let yearMonths = 12
+        
+        static let weekStartOffsetDays = -(weekDays - 1)
+        static let monthStartOffsetDays = -(monthDays - 1)
+        static let yearStartOffsetMonths = -(yearMonths - 1)
+    }
+    
     private var periodStartDate: Date {
         let calendar = Calendar.current
         switch selectedPeriod {
         case .week:
-            return calendar.date(byAdding: .day, value: -6, to: calendar.startOfDay(for: Date()))!
+            return calendar.date(
+                byAdding: .day,
+                value: PeriodConfig.weekStartOffsetDays,
+                to: calendar.startOfDay(for: Date())
+            )!
         case .month:
-            return calendar.date(byAdding: .day, value: -29, to: calendar.startOfDay(for: Date()))!
+            return calendar.date(
+                byAdding: .day,
+                value: PeriodConfig.monthStartOffsetDays,
+                to: calendar.startOfDay(for: Date())
+            )!
         case .year:
-            return calendar.date(byAdding: .month, value: -11, to: Date().startOfMonth)!
+            return calendar.date(
+                byAdding: .month,
+                value: PeriodConfig.yearStartOffsetMonths,
+                to: Date().startOfMonth
+            )!
         }
     }
     
@@ -59,15 +81,19 @@ struct StatsView: View {
         let days: Int
         
         switch selectedPeriod {
-        case .week: days = 7
-        case .month: days = 30
-        case .year: days = 12 // Monthly for year view
+        case .week: days = PeriodConfig.weekDays
+        case .month: days = PeriodConfig.monthDays
+        case .year: days = PeriodConfig.yearMonths // Monthly for year view
         }
         
         if selectedPeriod == .year {
             // Group by month for year view
-            return (0..<12).map { monthOffset in
-                let date = calendar.date(byAdding: .month, value: -11 + monthOffset, to: Date().startOfMonth)!
+            return (0..<PeriodConfig.yearMonths).map { monthOffset in
+                let date = calendar.date(
+                    byAdding: .month,
+                    value: PeriodConfig.yearStartOffsetMonths + monthOffset,
+                    to: Date().startOfMonth
+                )!
                 let monthEnd = calendar.date(byAdding: DateComponents(month: 1, day: -1), to: date)!
                 
                 let amount = transactions

@@ -74,13 +74,7 @@ extension Category {
     static var defaultExpenseCategories: [Category] {
         [
             Category(name: "Food & Dining", icon: "fork.knife", colorHex: "#34C759", budget: 600),
-            Category(name: "Transport", icon: "car.fill", colorHex: "#FF9500", budget: 300),
-            Category(name: "Entertainment", icon: "gamecontroller.fill", colorHex: "#FF6B6B", budget: 150),
-            Category(name: "Shopping", icon: "bag.fill", colorHex: "#AF52DE", budget: 400),
-            Category(name: "Bills & Utilities", icon: "doc.text.fill", colorHex: "#5856D6", budget: 500),
-            Category(name: "Health", icon: "heart.fill", colorHex: "#FF2D55", budget: 200),
-            Category(name: "Education", icon: "book.fill", colorHex: "#007AFF", budget: 100),
-            Category(name: "Other", icon: "ellipsis.circle.fill", colorHex: "#8E8E93", budget: 0)
+            Category(name: "Transport", icon: "car.fill", colorHex: "#FF9500", budget: 300)
         ]
     }
     
